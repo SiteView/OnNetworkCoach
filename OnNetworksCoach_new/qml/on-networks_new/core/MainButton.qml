@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 BorderImage {
     id: mainBtn
+    width: 255; height: 145
 
     property string initialImage: ""
     property string hoverImage: ""
@@ -10,10 +11,7 @@ BorderImage {
 
 
     signal clicked();
-    source: "../iamges/" + image + ".png"
-    width: 260 ; height: 85
-    border.left: 5; border.top: 5
-    border.right: 5; border.bottom: 5
+    source: "../images/" + image + ".png"
 
     MouseArea {
         anchors.fill: parent
@@ -21,7 +19,6 @@ BorderImage {
         onEntered: image = hoverImage
         onExited: image = initialImage
         onClicked: { mainBtn.clicked()}
-        /*窗口mainBtn能移动*/
         drag.target: mainBtn
         drag.axis: Drag.XandYAxis
         drag.minimumX: 0
@@ -33,11 +30,9 @@ BorderImage {
     //    var buttonid
     function buttonimagechange(buttonid)
     {
-
         image = "buttonid" + "1";
         initialImage = "buttonid" + "1";
         hoverImage = "buttonid" + "2";
         selectedImage = "buttonid" + "3";
     }
-
 }

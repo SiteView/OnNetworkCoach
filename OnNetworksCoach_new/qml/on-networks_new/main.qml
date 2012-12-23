@@ -1,46 +1,105 @@
 import QtQuick 2.0
 import "core"
 import "information"
+import "component"
 
 Rectangle {
-    id: mainWindow; width: 960; height: 700
+    id: mainWindow; width: 850; height: 700
 
-    property alias flag0: internetPage.visible
-    property alias flag1: wifisettingPage.visible
-    property alias flag2: pwdsettingPage.visible
-    property alias flag3: networkmapPage.visible
-    property alias flag4: routersettingPage.visible
-    property alias flag5: supportPage.visible
+    property alias visible0: internetPage.visible
+    property alias visible1: wifisettingPage.visible
+    property alias visible2: pwdsettingPage.visible
+    property alias visible3: networkmapPage.visible
+    property alias visible4: routersettingPage.visible
+    property alias visible5: supportPage.visible
 
+    property alias color0: categoryButton_internet.color
+    property alias color1: categoryButton_wifisetting.color
+    property alias color2: categoryButton_passwordsetting.color
+    property alias color3: categoryButton_networkmap.color
+    property alias color4: categoryButton_routersetting.color
+    property alias color5: categoryButton_support.color
+    property alias color6: backButton.color
+
+    signal internetPressed()
+    signal wifisettingPressed()
+    signal paswordsettingPressed()
+    signal networkmapsettingPressed()
+    signal routersettingPressed()
+    signal supportPressed()
+
+    onInternetPressed: internetPage.visible = true
+    onWifisettingPressed: wifisettingPage.visible = true
+    onPaswordsettingPressed: pwdsettingPage.visible = true
+    onNetworkmapsettingPressed: networkmapPage.visible = true
+    onRoutersettingPressed: routersettingPage.visible = true
+    onSupportPressed: supportPage.visible = true
+
+
+    Rectangle {
+        id: topWindow
+        width: mainWindow.width; height: 100
+        color: "#000000"
+    }
     //设置背景图片
-    Image {
-        id: bgImage
-        anchors.fill: parent
-        smooth: true
-        source: "images/bg.png"
+    Rectangle {
+        id: bottomWindow
+        width: parent.width; height: 600
+        color: "#69a1d5"
+        gradient: Gradient {
+            GradientStop {
+                position: 0.21;
+                color: "#69a1d5";
+            }
+            GradientStop {
+                position: 1.00;
+                color: "#ffffff";
+            }
+        }
+        anchors.bottom: mainWindow.bottom
+//        Image {
+//            id: bgImage
+//            anchors.fill: parent
+//            smooth: true
+//            source: "images/bg.png"
+//        }
     }
 
+    //Logo
+    Image {
+        id: logo; y: 20; smooth: true
+        source: "images/logo.png"
+        anchors.left: mainButtons.left
+    }
     //语言选择
+    LanguageList {
+        id: languageList
+        anchors { right: parent.right; rightMargin: 10; top: language.bottom }
+        visible: false
+    }
     Rectangle {
         id: language
         width: 125; height: 20; color: "white"
         border { color: "black"; width: 1 }
         anchors { right: parent.right; rightMargin: 10; top: parent.top; topMargin: 50 }
-
         Text {
-            id: languageName; anchors.fill: parent; anchors.leftMargin: 5
-            text: qsTr("hello")
-            font { family: "Helvetica"; pointSize: 10 }
+            id: languageDisplay; smooth: true
+            font { family: "Helvetica"; pointSize: 12 }
+            text: "English"
         }
 
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
             onEntered: language.border.color = "blue"
-            onExited: language.border.color = "black", languageName.visible = true
+            onExited: language.border.color = "black", languageDisplay.visible = true
+            onClicked: {
+                languageList.visible == true ? languageList.visible = false : languageList.visible = true
+            }
         }
     }
 
+    /*
     //搜索框
     Rectangle {
         id: rectangle
@@ -53,13 +112,13 @@ Rectangle {
             TextInput {
                 id: findContent
                 width: 180; color: "lightblue"; smooth: true
-                text: "input your want"
+                text: " input your want"
                 font { family: "Helvetica"; pointSize: 15 }
                 cursorPosition: 1
             }
             Image {
                 id:findImage; smooth: true; opacity: .6
-                source: "images/find.gif"
+                source: "images/find.png"
             }
         }
         MouseArea {
@@ -78,6 +137,8 @@ Rectangle {
             }
         }
     }
+
+
     //router name
     Text {
         id: routerName
@@ -85,45 +146,64 @@ Rectangle {
         text: "N150R WiFi Router"
         font { family: "Helvetica"; bold: true; pointSize: 16 }
     }
-
-    //
-    ListModel {
-        id: categoriesModel
-        ListElement { name: "internet" }
-        ListElement { name: "wifi setting" }
-        ListElement { name: "password setting" }
-        ListElement { name: "network map" }
-        ListElement { name: "router setting" }
-        ListElement { name: "support" }
-    }
-
-    Row {
-        Rectangle {
-            id: categoryRect; y: 120
-            width: 160; height: mainWindow.height - categoryRect.y
-            color: "#21242b"
-            visible: false
-
-            ListView {
-                anchors.fill: parent
-                model: categoriesModel
-                delegate: CategoryDelegate {}
+    */
+    //category buttons
+    Rectangle {
+        id: categoryButtons; y: 100; width: 200; height: mainWindow.height - 100
+        color: "#69a1d5"
+        visible: false
+        Column{
+            CategoryButton {
+                id: categoryButton_internet
+                textContent: "Internet"
+            }
+            Rectangle { width: 200; height: 1; color: "gray"}
+            CategoryButton {
+                id: categoryButton_wifisetting
+                textContent: "Wifi Setting"
+            }
+            Rectangle { width: 200; height: 1; color: "gray"}
+            CategoryButton {
+                id: categoryButton_passwordsetting
+                textContent: "Password Setting"
+            }
+            Rectangle { width: 200; height: 1; color: "gray"}
+            CategoryButton {
+                id: categoryButton_networkmap
+                textContent: "Network Map"
+            }
+            Rectangle { width: 200; height: 1; color: "gray"}
+            CategoryButton {
+                id: categoryButton_routersetting
+                textContent: "Router Setting"
+            }
+            Rectangle { width: 200; height: 1; color: "gray"}
+            CategoryButton {
+                id: categoryButton_support
+                textContent: "Support"
+            }
+            Rectangle { width: 200; height: 1; color: "gray"}
+            CategoryButton {
+                id: backButton
+                textContent: "Back MainPage"
+                onPressed:
+                    backButton.color = "white",
+                    mainButtons.visible = true,
+                    categoryButtons.visible = internetPage.visible = wifisettingPage.visible =
+                    pwdsettingPage.visible = networkmapPage.visible =
+                    routersettingPage.visible = supportPage.visible = false
             }
         }
-        Rectangle {
-            y: categoryRect.y
-            width: 1; height: categoryRect.height; color: "white"
-        }
-
     }
 
-    InternetInfo { id: internetPage; x: 100; y: 100; visible: false }
-    WifiInfo { id: wifisettingPage; x: 200; y: 100; visible: false }
-    PasswordInfo { id: pwdsettingPage; x: 200; y: 100; visible: false }
-    NetworkmapInfo { id: networkmapPage; x: 200; y: 100; visible: false }
-    RouterInfo { id: routersettingPage; x: 200; y: 100; visible: false }
-    SupportInfo { id: supportPage; x: 200; y: 100; visible: false }
+    InternetInfo { id: internetPage; y: 140; anchors.left: categoryButtons.right; anchors.right: mainWindow.right; anchors.bottom: mainWindow.bottom; visible: false }
+    WifiInfo { id: wifisettingPage; y: 140; anchors.left: categoryButtons.right; anchors.right: mainWindow.right; anchors.bottom: mainWindow.bottom; visible: false }
+    PasswordInfo { id: pwdsettingPage; y: 140; anchors.left: categoryButtons.right; anchors.right: mainWindow.right; anchors.bottom: mainWindow.bottom; visible: false }
+    NetworkmapInfo { id: networkmapPage; y: 140; anchors.left: categoryButtons.right; anchors.right: mainWindow.right; anchors.bottom: mainWindow.bottom; visible: false }
+    RouterInfo { id: routersettingPage; y: 140; anchors.left: categoryButtons.right; anchors.right: mainWindow.right; anchors.bottom: mainWindow.bottom; visible: false }
+    SupportInfo { id: supportPage; y: 140; anchors.left: categoryButtons.right; anchors.right: mainWindow.right; anchors.bottom: mainWindow.bottom; visible: false }
 
+    //主页面,六个button
     Grid {
         id: mainButtons
         columns: 3
@@ -137,8 +217,9 @@ Rectangle {
             hoverImage: "internet3"
             onClicked: {
                 mainButtons.visible = false
-                btnscal.opacity = 1
-                categoryRect.visible = true
+                categoryButtons.visible = true
+                color0 = "green"; color1 = color2 = color3 = color4 = color5 = color6 = "white"
+                internetPressed()
             }
         }
         MainButton {
@@ -148,8 +229,9 @@ Rectangle {
             hoverImage: "wifisetting3"
             onClicked: {
                 mainButtons.visible = false
-                btnscal.opacity = 1
-                categoryRect.visible = true
+                categoryButtons.visible = true
+                color1 = "green"; color0 = color2 = color3 = color4 = color5 = color6 = "white"
+                wifisettingPressed()
             }
         }
         MainButton {
@@ -159,8 +241,9 @@ Rectangle {
             hoverImage: "passwordsetting3"
             onClicked: {
                 mainButtons.visible = false
-                btnscal.opacity = 1
-                categoryRect.visible = true
+                categoryButtons.visible = true
+                color2 = "green"; color1 = color0 = color3 = color4 = color5 = color6 = "white"
+                paswordsettingPressed()
             }
         }
         MainButton {
@@ -170,8 +253,9 @@ Rectangle {
             hoverImage: "networkmap3"
             onClicked: {
                 mainButtons.visible = false
-                btnscal.opacity = 1
-                categoryRect.visible = true
+                categoryButtons.visible = true
+                color3 = "green"; color1 = color2 = color0 = color4 = color5 = color6 = "white"
+                networkmapsettingPressed()
             }
         }
         MainButton {
@@ -181,8 +265,9 @@ Rectangle {
             hoverImage: "routersetting3"
             onClicked: {
                 mainButtons.visible = false
-                btnscal.opacity = 1
-                categoryRect.visible = true
+                categoryButtons.visible = true
+                color4 = "green"; color1 = color2 = color3 = color0 = color5 = color6 = "white"
+                routersettingPressed()
             }
         }
         MainButton {
@@ -192,26 +277,15 @@ Rectangle {
             hoverImage: "support3"
             onClicked: {
                 mainButtons.visible = false
-                btnscal.opacity = 1
-                categoryRect.visible = true
+                categoryButtons.visible = true
+                color5 = "green"; color1 = color2 = color3 = color4 = color0 = color6 = "white"
+                supportPressed()
             }
         }
     }
 
-    Image {
-        id: btnscal
-        smooth: true
-        source: "images/btnscal.jpg"
-        opacity: 0
-        anchors { bottom: parent.bottom; right: parent.right }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                mainButtons.visible = true
-                categoryRect.visible = false
-            }
-        }
-    }
+
+
 }
 
 
