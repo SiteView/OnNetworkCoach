@@ -2,7 +2,7 @@ import QtQuick 2.0
 
 BorderImage {
     id: mainBtn
-    width: 255; height: 145
+    //width: 255; height: 145
 
     property string initialImage: ""
     property string hoverImage: ""
