@@ -1,63 +1,104 @@
 import QtQuick 2.0
+import "../images"
 
-Item {
-    id: container
-    width: mainWindow.width - categoryButtons.width; height: mainWindow.height - categoryButtons.y
-    anchors.left: categoryButtons.right
+Rectangle {
+    id: rectangle
+    width: 750; height: 540
+
+    property alias central_x: 300
+    property alias central_y: 200
+
+    property alias coor_x00: 300 + 200 * Math.sin(0)
+    property alias coor_x01: 300 + 200 * Math.sin(120)
+    property alias coor_x02: 300 + 200 * Math.sin(240)
+
+    property alias coor_y00: 300 + 200 * Math.cos(0)
+    property alias coor_y01: 300 + 200 * Math.cos(120)
+    property alias coor_y02: 300 + 200 * Math.cos(240)
+
+
+    //Model0
     ListModel {
-        id: contactModel
+        id: model0
         ListElement {
-            name: "Computer0"
-            icon: "../images/netmap/genie_b1.png"
+            name: "name00"
+            coordinate_x: "300"
+            coordinate_y: "200"
+            image: "../images/netmap/internet_b1.png"
         }
         ListElement {
-            name: "Computer1"
-            icon: "../images/netmap/genie_b1.png"
+            name: "name01"
+            coordinate_x: "100"
+            coordinate_y: "200"
+            image: "../images/netmap/internet_b2.png"
         }
         ListElement {
-            name: "computer2"
-            icon: "../images/netmap/genie_b1.png"
-        }
-        ListElement {
-            name: "Computer3"
-            icon: "../images/netmap/genie_b1.png"
-        }
-        ListElement {
-            name: "Computer4"
-            icon: "../images/netmap/genie_b1.png"
-        }
-        ListElement {
-            name: "computer5"
-            icon: "../images/netmap/genie_b1.png"
+            name: "name02"
+            coordinate_x: "500"
+            coordinate_y: "200"
+            image: "../images/netmap/internet_b2.png"
         }
     }
 
+    //Model1
+    ListModel {
+        id: model1
+        ListElement {
+            name: "name10"
+            coordinate_x: 300
+            coordinate_y: 200
+            image: "../images/netmap/internet_b1.png"
+        }
+        ListElement {
+            name: "name11"
+            coordinate_x: 300 + 200 * Math.sin(60)
+            coordinate_y: 200 + 200 * Math.cos(60)
+            image: "../images/netmap/internet_b2.png"
+        }
+        ListElement {
+            name: "name12"
+            coordinate_x: 300 + 200 * Math.sin(300)
+            coordinate_y: 200 + 200 * Math.cos(300)
+            image: "../images/netmap/internet_b2.png"
+        }
+        ListElement {
+            name: "name12"
+            coordinate_x: 300 + 200 * Math.sin(180)
+            coordinate_y: 200 + 200 * Math.cos(180)
+            image: "../images/netmap/internet_b2.png"
+        }
+    }
     Component {
         id: delegate
-        Column {
-            id: wrapper
+        Rectangle {
+            id: display
             Image {
-                anchors.horizontalCenter: nameText.horizontalCenter
-                //width: 64; height: 64
-                source: icon
-            }
-            Text {
-                id: nameText
-                text: name
-                font.pointSize: 16
-                color: wrapper.PathView.isCurrentItem ? "green" : "black"
+                id: name
+                x: coordinate_x; y: coordinate_y
+                source: image
             }
         }
     }
 
-    PathView {
-        anchors.fill: parent
-        model: contactModel
-        delegate: delegate
-        path: Path {
-            startX: 100; startY: 100
-            PathQuad { x: 120; y: 25; controlX: 260; controlY: 75 }
-            PathQuad { x: 120; y: 100; controlX: -20; controlY: 75 }
-        }
+//    ListView {
+//        anchors.fill: parent
+//        model: model0
+//        delegate: delegate1
+//    }
+
+    Image {
+        id: image00
+        x: coor_x00; y: coor_y00
+        source: "../images/netmap/internet_b1.png"
+    }
+    Image {
+        id: image01
+        x: coor_x01; y: coor_y01
+        source: "../images/netmap/internet_b1.png"
+    }
+    Image {
+        id: image02
+        x: coor_x02; y: coor_y02
+        source: "../images/netmap/internet_b1.png"
     }
 }

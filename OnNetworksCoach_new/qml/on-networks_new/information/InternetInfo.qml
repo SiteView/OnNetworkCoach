@@ -1,9 +1,10 @@
 import QtQuick 2.0
 import "../component"
 
-Item {
+Rectangle {
     id: container
     width: mainWindow.width - categoryButtons.width; height: mainWindow.height - categoryButtons.y
+    color: "#deeade"
     anchors.left: categoryButtons.right
     // visible: onInternetPressed ? true : false
     Column {
@@ -32,14 +33,15 @@ Item {
             Image { id: image0; width: container.width; height: 1; source: "../images/liteblue.gif"; smooth: true }
         }
         Flickable {
-            id: flickable1; x: 10; y: image0.y + 10; z: 0
-            width: container.width - scrollbar.width; height: categoryButtons.height - image0.y - 10 - 40
+            id: flickable1; x: 10; y: image0.y + 10
+            width: container.width ; height: categoryButtons.height - image0.y - 100
             contentWidth: column1.width; contentHeight: column1.height
             boundsBehavior: Flickable.StopAtBounds
 
             Column {
                 id: column1; spacing: 15
                 Grid {
+                    id: position0
                     columns: 2; rowSpacing: 15
                     TextInfo { id: text4; textInfo: "Account Name" }
                     TextInfo { id: text5; textInfo: "(If Required)" }
@@ -67,6 +69,7 @@ Item {
                     TextInfo { id: text10; textInfo: "Use Static IP Address" }
                 }
                 Column {
+                    id: position1
                     x: 10; spacing: 15
                     TextInfo { id: text11; textInfo: "IP Address" }
                     TextInfo { id: text12; textInfo: "IP Subnet Mask" }
@@ -93,7 +96,7 @@ Item {
                     TextInfo { id: text16; textInfo: "Use Static DNS Address" }
                 }
                 Column {
-                    x: 10
+                    id: position2; x: 10;
                     spacing: 15
                     TextInfo { id: text18; textInfo: "Primary DNS" }
                     TextInfo { id: text19; textInfo: "Secondary DNS" }
@@ -105,7 +108,7 @@ Item {
                         id: check6
                         isTicked: "true"
                         onTicked: {
-                            check7.isTicked = "false"; check6.isTicked = "false"
+                            check7.isTicked = "false"; check8.isTicked = "false"
                         }
                     }
                     TextInfo { id: text21; textInfo: "Use Default Address" }
@@ -120,6 +123,7 @@ Item {
                     TextInfo { id: text22; textInfo: "Use Computer MAC Address" }
                 }
                 Row {
+                    id: position3
                     CheckBox {
                         id: check8
                         onTicked: {
@@ -131,14 +135,24 @@ Item {
                 Image { width: container.width; height: 1; source: "../images/liteblue.gif"; smooth: true }
             }
 
-            InputRect { id: input1; x: scrollbar.x - 155 - 20; y: text4.y }
-            InputRect { id: input2; x: scrollbar.x - 155 - 20; y: text6.y }
-            //        IpRectangle { id: ipRectangle0; x: scrollbar.x - 155 - 20; y: text11.y }
-            //        IpRectangle { id: ipRectangle1; x: scrollbar.x - 155 - 20; y: text12.y }
-            //        IpRectangle { id: ipRectangle2; x: scrollbar.x - 155 - 20; y: text13.y }
-            //        IpRectangle { id: ipRectangle3; x: scrollbar.x - 155 - 20; y: text18.y }
-            //        IpRectangle { id: ipRectangle4; x: scrollbar.x - 155 - 20; y: text19.y }
-            InputRect { id: macAddress; x: scrollbar.x - 155 - 20; y: text9.y }
+            Column {
+                spacing: 10; x: scrollbar.x - 155 - 20; y: position0.y
+                InputRect { id: input1; KeyNavigation.tab: input2 }
+                InputRect { id: input2; KeyNavigation.tab: ipRectangle0 }
+            }
+            Column {
+                spacing: 10; x: scrollbar.x - 155 - 20; y: position1.y
+                IpRectangle { id: ipRectangle0; KeyNavigation.tab: ipRectangle1 }
+                IpRectangle { id: ipRectangle1; KeyNavigation.tab: ipRectangle2 }
+                IpRectangle { id: ipRectangle2; KeyNavigation.tab: ipRectangle3 }
+
+            }
+            Column {
+                spacing: 10; x: scrollbar.x - 155 - 20; y: position2.y
+                IpRectangle { id: ipRectangle3; KeyNavigation.tab: ipRectangle4}
+                IpRectangle { id: ipRectangle4; KeyNavigation.tab: macAddress}
+            }
+            InputRect { id: macAddress; x: scrollbar.x - 155 - 20; y: position3.y; KeyNavigation.tab: apply }
         }
     }
     // 滚动条

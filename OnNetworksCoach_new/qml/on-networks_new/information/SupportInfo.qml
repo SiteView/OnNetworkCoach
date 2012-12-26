@@ -5,8 +5,7 @@ Rectangle {
     id: container
     width: mainWindow.width - categoryButtons.width; height: mainWindow.height - categoryButtons.y
     anchors.left: categoryButtons.right
-
-    color: "lightblue"
+    color: "#deeade"
 
     Column {
         spacing: 15; anchors.centerIn: parent

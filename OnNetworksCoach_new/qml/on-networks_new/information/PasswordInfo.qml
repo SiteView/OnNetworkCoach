@@ -1,23 +1,16 @@
 import QtQuick 2.0
 import "../component"
 
-Item {
+Rectangle {
     id: container
 
     width: mainWindow.width - categoryButtons.width; height: mainWindow.height - categoryButtons.y
     anchors.left: categoryButtons.right
+    color: "#deeade"
     visible: color2 == "green" ? true : false
 
     Column {
-        spacing: 15; x: 10
-        TextInfo { id: text0; textInfo: "Password Settings"; color: "green" }
-        //two buttons
-        Row {
-            id: buttons; spacing: 10
-            ButtonInfo { id: apply; btnName: "Apply" }
-            ButtonInfo { id: cancel; btnName: "Cancel" }
-        }
-        Image { width: container.width; height: 1; source: "../images/liteblue.gif"; smooth: true }
+        spacing: 15; x: 10       
         TextInfo { id: text1; textInfo: "Set Wireless Password"; font.bold: true }
         Column {
             spacing: 15
@@ -49,6 +42,16 @@ Item {
         }
         Image { width: container.width; height: 1; source: "../images/liteblue.gif"; smooth: true }
 
+    }
+    Column {
+        id: fixPart; spacing: 15
+        anchors { right: container.right; rightMargin: 10; bottom: container.bottom; bottomMargin: 10 }
+        //two buttons
+        Row {
+            id: buttons3; spacing: 10
+            ButtonInfo { id: apply3; btnName: "Apply" }
+            ButtonInfo { id: cance3; btnName: "Cancel" }
+        }
     }
 }
 

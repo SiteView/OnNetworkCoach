@@ -18,6 +18,7 @@ Item {
     Text {
         text: name
         color: delegate.ListView.isCurrentItem ? "white" : "black"
+        //color: delegate.ListView.isCurrentItem ? "white" : "balck"
         font { family: "Helvetica"; pixelSize: 16; bold: true }
         anchors {
             left: parent.left; leftMargin: 15
@@ -30,6 +31,7 @@ Item {
         anchors.bottom: delegate.bottom
         visible: delegate.ListView.isCurrentItem ? false : true
     }
+
     Rectangle {
         width: delegate.width; height: 1; color: "white"
         visible: delegate.ListView.isCurrentItem ? false : true
@@ -40,7 +42,6 @@ Item {
         onClicked: {
             delegate.ListView.view.currentIndex = index
             visible1();
-
         }
     }
 }

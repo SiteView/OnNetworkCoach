@@ -1,0 +1,41 @@
+import QtQuick 2.0
+
+
+
+Rectangle {
+    id: btnRect
+
+    property string btnName: ""  //给btn命令
+    property string normal: "../images/button_normal.png"
+    property string hover: "../images/button_pressed.png"
+    property string clicked: "../images/button_pressed.png"
+    signal clicked();
+
+    width: 120; height: 30
+
+    Image {
+        id: btnImage
+        anchors.fill: parent
+        smooth: true
+        source: normal
+    }
+
+    Text {
+        id: btnText
+        text: btnName
+        font { family: "Helvetica"; bold: true; pointSize: 15 }
+        anchors.centerIn: parent
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: btnImage.source = hover, btnImage.opacity = 0.6
+        onExited: btnImage.source = normal, btnImage.opacity = 1
+        onClicked: {
+            onClicked();
+            btnImage.source = clicked
+            btnImage.opacity = 1
+        }
+    }
+}

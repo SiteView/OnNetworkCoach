@@ -26,6 +26,7 @@ Rectangle
                 font.family: "Helvetica"; font.pointSize: 10
                 cursorPosition: 1
                 color: "black"
+                selectByMouse: true
             }
     }
 }
