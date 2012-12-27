@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 1.0
 import "../component"
 
 Rectangle {
@@ -42,7 +42,7 @@ Rectangle {
                 id: column1; spacing: 15
                 Grid {
                     id: position0
-                    columns: 2; rowSpacing: 15
+                    columns: 2; /*rowSpacing: 15*/
                     TextInfo { id: text4; textInfo: "Account Name" }
                     TextInfo { id: text5; textInfo: "(If Required)" }
                     TextInfo { id: text6; textInfo: "Domain Name" }

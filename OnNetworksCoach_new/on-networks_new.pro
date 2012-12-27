@@ -19,5 +19,5 @@ include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    qml/on-networks_new/component/LanguageList.qml \
-    qml/on-networks_new/core/CategoryButtonl
+    qml/on-networks_new/component/LanguageList.qml
+

@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 1.0
 
 Rectangle {
     id: categoryBtn
@@ -10,12 +10,12 @@ Rectangle {
 
     function image00()
     {
-        if(textContent == "Internet") {image0 = "sub-menu-select-bg.gif"; image1 = image2 = image3 = image4 = image5 = image6 = "sub-menu-select-bg.png" }
-        if(textContent == "Wifi Setting") {image1 = "sub-menu-select-bg.gif"; image0 = image2 = image3 = image4 = image5 = image6 = "sub-menu-select-bg.png" }
-        if(textContent == "Password Setting") {image2 = "sub-menu-select-bg.gif"; image1 = image0 = image3 = image4 = image5 = image6 = "sub-menu-select-bg.png" }
-        if(textContent == "Network Map") {image3 = "sub-menu-select-bg.gif"; image1 = image2 = image0 = image4 = image5 = image6 = "sub-menu-select-bg.png" }
-        if(textContent == "Router Setting") {image4 = "sub-menu-select-bg.gif"; image1 = image2 = image3 = image0 = image5 = image6 = "sub-menu-select-bg.png" }
-        if(textContent == "Support") {image5 = "sub-menu-select-bg.gif"; image1 = image2 = image3 = image4 = image0 = image6 = "sub-menu-select-bg.png" }
+        if(textContent == "Internet") {image0 = "sub-menu-select-bg.gif"; image1 = image2 = image3 = image4 = image5 = "sub-menu-select-bg.png" }
+        if(textContent == "Wifi Setting") {image1 = "sub-menu-select-bg.gif"; image0 = image2 = image3 = image4 = image5 = "sub-menu-select-bg.png" }
+        if(textContent == "Password Setting") {image2 = "sub-menu-select-bg.gif"; image1 = image0 = image3 = image4 = image5 = "sub-menu-select-bg.png" }
+        if(textContent == "Network Map") {image3 = "sub-menu-select-bg.gif"; image1 = image2 = image0 = image4 = image5 = "sub-menu-select-bg.png" }
+        if(textContent == "Router Setting") {image4 = "sub-menu-select-bg.gif"; image1 = image2 = image3 = image0 = image5 = "sub-menu-select-bg.png" }
+        if(textContent == "Support") {image5 = "sub-menu-select-bg.gif"; image1 = image2 = image3 = image4 = image0 = "sub-menu-select-bg.png" }
         if(textContent == "Back MainPage") {image6 = "sub-menu-select-bg.gif"; image1 = image2 = image3 = image4 = image5 = image0 = "sub-menu-select-bg.png" }
     }
     function visible00()
@@ -68,7 +68,6 @@ Rectangle {
                 target: categoryBtn
                 //color: "green"  //should be gradient
                 image: "sub-menu-select-bg.gif"
-
             }
         }
     ]

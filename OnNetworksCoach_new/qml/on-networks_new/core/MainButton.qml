@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 1.0
 
 BorderImage {
     id: mainBtn
@@ -19,12 +19,6 @@ BorderImage {
         onEntered: image = hoverImage
         onExited: image = initialImage
         onClicked: { mainBtn.clicked()}
-        drag.target: mainBtn
-        drag.axis: Drag.XandYAxis
-        drag.minimumX: 0
-        drag.maximumX: mainWindow.width
-        drag.minimumY: 0
-        drag.maximumY: mainWindow.height
     }
 
     //    var buttonid

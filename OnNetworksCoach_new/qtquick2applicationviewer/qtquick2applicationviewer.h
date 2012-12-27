@@ -24,6 +24,8 @@ public:
     void setMainQmlFile(const QString &file);
     void addImportPath(const QString &path);
 
+
+
     void showExpanded();
 
 private:

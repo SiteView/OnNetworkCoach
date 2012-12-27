@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 1.0
 import "../component"
 
 Rectangle {
@@ -26,7 +26,7 @@ Rectangle {
         Image { width: container.width; height: 1; source: "../images/liteblue.gif"; smooth: true }
         TextInfo { id: text7; textInfo: "Security Options"; font.bold: true }
         Grid {
-            rows: 3; columnSpacing: 10; rowSpacing: 10
+            rows: 3; /*columnSpacing: 10;*/ /*rowSpacing: 10*/
             CheckBox {
                 id: check1
                 onTicked: {
@@ -60,7 +60,7 @@ Rectangle {
         Image { width: container.width; height: 1; source: "../images/liteblue.gif"; smooth: true }
     }
     Column {
-        spacing: 10; x: text2.x + 300; y: 50
+        spacing: 8; x: text2.x + 300; y: 48
         InputRect { id: inputRect0; textContent: " onnetworks"}
         InputRect { id: inputRect1; textContent: " China"}
         InputRect { id: inputRect2; textContent: " Auto"}
