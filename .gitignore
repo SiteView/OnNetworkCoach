@@ -161,3 +161,18 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+*.lib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
